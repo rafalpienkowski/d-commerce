@@ -1,0 +1,36 @@
+@inherits OrdersBase
+@page "/orders"
+
+@if (Orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>
+        <button @onclick="GetOrders" class="btn btn-primary btn-sm">Refresh</button>
+    </p>
+    <table class="table table-hover table-sm table-fixed">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Number</th>
+            <th>UserId</th>
+            <th>Last updated</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var order in Orders)
+        {
+            <tr @key="order">
+                <td>@order.Id</td>
+                <td>@order.Number</td>
+                <td>@order.UserId</td>
+                <td>@order.LastUpdate.ToLocalTime().ToString("dd-MM-yyyy HH:mm")</td>
+                <td>@order.Status</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -1,0 +1,25 @@
+﻿@inherits PlaceOrderBase
+@page "/placeorder"
+
+<div class="container">
+    <h1>Place an order</h1>
+    <p></p>
+    <div class="row">
+        <div class="col-3">
+            <EditForm Model="@Order" OnValidSubmit="@HandleValidSubmit">
+                <DataAnnotationsValidator/>
+                <div class="form-group">
+                    <label for="productIds">ProductIds: </label>
+                    <InputText id="productIds" class="form-control" @bind-Value="@Order.ProductIds"></InputText>
+                    <ValidationMessage For="@(() => Order.ProductIds)"/>
+                </div>
+                <div class="form-group">
+                    <label for="shippingTypeId">ShippingTypeId: </label>
+                    <InputText id="shippingTypeId" class="form-control" @bind-Value="@Order.ShippingTypeId"></InputText>
+                    <ValidationMessage For="@(() => Order.ShippingTypeId)"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Place order</button>
+            </EditForm>
+        </div>
+    </div>
+</div>

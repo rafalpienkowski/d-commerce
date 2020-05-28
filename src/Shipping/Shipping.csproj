@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Billing.Messages\Billing.Messages.csproj" />
+      <ProjectReference Include="..\Framework\Framework.csproj" />
+      <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
+      <ProjectReference Include="..\Shipping.Messages\Shipping.Messages.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Coravel" Version="3.6.1" />
+        <PackageReference Include="MassTransit.AspNetCore" Version="6.3.2" />
+        <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="6.3.2" />
+        <PackageReference Include="MassTransit.RabbitMQ" Version="6.3.2" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.3" />
+    </ItemGroup>
+
+
+</Project>

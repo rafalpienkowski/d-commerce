@@ -1,0 +1,10 @@
+@page "/placeorderconfirmation/{orderId:guid}"
+
+<h1>
+    Your order @OrderId.ToString().Substring(0,7) has been placed!
+</h1>
+
+@code{
+    [Parameter]
+    public Guid OrderId { get; set; }
+}

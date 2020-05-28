@@ -1,0 +1,19 @@
+version: '3.4'
+services:
+  rabbit:
+    image: rabbitmq:3-management-alpine
+    container_name: some-rabbit
+    ports:
+      - 5672:5672
+      - 8080:15672
+  postgresql:
+    container_name: some-postgresql
+    image: postgres:12-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: dcommerce
+      POSTGRES_DB: dcommerce
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
