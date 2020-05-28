@@ -18,12 +18,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Messages", "src\Sh
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messages", "src\Messages", "{F8599A29-4849-4C56-A8F3-56D9215BA55D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "src\Framework", "{E3192FC7-0A19-4A91-9815-91A7DDA0D0DF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "src\Infrastructure", "{B1DF0CDC-77DE-483D-AE17-4BF8FCEF12D9}"
 ProjectSection(SolutionItems) = preProject
 	src\Framework\docker-compose.yaml = Framework\docker-compose.yaml
 	src\Framework\init.sql = Framework\init.sql
+	docker-compose.yaml = docker-compose.yaml
+	init.sql = init.sql
 EndProjectSection
 EndProject
 Global
@@ -69,7 +69,5 @@ Global
 		{B523BEE3-99D6-4738-9926-58B0C2272D4F} = {F8599A29-4849-4C56-A8F3-56D9215BA55D}
 		{46066E90-C9FF-4F97-AC3A-571C5E52EDB8} = {F8599A29-4849-4C56-A8F3-56D9215BA55D}
 		{F70995DC-F4D7-4C4E-9145-AD8D0A55C98A} = {F8599A29-4849-4C56-A8F3-56D9215BA55D}
-		{E4AAC7CC-9454-4F2E-BA24-7311475C6A44} = {E3192FC7-0A19-4A91-9815-91A7DDA0D0DF}
-		{B1DF0CDC-77DE-483D-AE17-4BF8FCEF12D9} = {E3192FC7-0A19-4A91-9815-91A7DDA0D0DF}
 	EndGlobalSection
 EndGlobal
