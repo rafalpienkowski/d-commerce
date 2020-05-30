@@ -1,0 +1,82 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Shipping",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build shipping",
+            "program": "${workspaceFolder}/src/Shipping/bin/Debug/netcoreapp3.1/Shipping.dll",
+            "args": ["--urls","https://localhost:8001;http://localhost:8000"],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Launch Sales",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build sales",
+            "program": "${workspaceFolder}/src/Sales/bin/Debug/netcoreapp3.1/Sales.dll",
+            "args": ["--urls","https://localhost:6001;http://localhost:6000"],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Launch Billing",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build billing",
+            "program": "${workspaceFolder}/src/Billing/bin/Debug/netcoreapp3.1/Billing.dll",
+            "args": ["--urls","https://localhost:7001;http://localhost:7000"],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": "Launch Web",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build web",
+            "program": "${workspaceFolder}/src/Web/bin/Debug/netcoreapp3.1/Web.dll",
+            "args": ["--urls","https://localhost:5001;http://localhost:5000"],
+            "cwd": "${workspaceFolder}/src/Web",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "^\\s*Now listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}
