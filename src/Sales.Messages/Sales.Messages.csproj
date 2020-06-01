@@ -6,4 +6,8 @@
         <Product>Sales.Messages</Product>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MassTransit.AspNetCore" Version="6.3.2" />
+    </ItemGroup>
+
 </Project>
