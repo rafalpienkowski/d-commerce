@@ -1,4 +1,5 @@
 using Framework;
+using Framework.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,7 @@ namespace Sales
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
+            services.AddTracing();
             services.AddDbContext<OrdersDbContext>();
             services.AddScoped<OrdersDbContext>();
             
@@ -36,7 +37,7 @@ namespace Sales
                 x.AddConsumer<PlaceOrderCustomer>();
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host("rabbitmq://localhost");
+                    cfg.ConfigureHost();
                     cfg.ReceiveEndpoint(typeof(PlaceOrder).GetQueueName(), ep =>
                     {
                         ep.ConfigureConsumer<PlaceOrderCustomer>(context);

@@ -1,6 +1,7 @@
 using System;
 using Coravel;
 using Framework;
+using Framework.Extensions;
 using GreenPipes;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace Shipping
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTracing();
             services.AddDbContext<ShippingOrderContext>();
             services.AddScoped<ShippingOrderContext>();
             
@@ -40,7 +42,7 @@ namespace Shipping
                 x.AddConsumer<PaymentAcceptedConsumer>();
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host("rabbitmq://localhost");
+                    cfg.ConfigureHost();
                     cfg.ReceiveEndpoint(typeof(CreateShipping).GetQueueName(), ep =>
                     {
                         ep.ConfigureConsumer<CreateShippingConsumer>(context);

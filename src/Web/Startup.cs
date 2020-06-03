@@ -1,4 +1,5 @@
 using Framework;
+using Framework.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,7 +25,7 @@ namespace Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-
+            services.AddTracing();
             services.AddDbContext<OrdersContext>();
             services.AddScoped<OrdersContext>();
             services.AddScoped<IOrdersRepository, OrdersRepository>();
@@ -38,7 +39,7 @@ namespace Web
                 x.AddConsumer<ShippingArrangedConsumer>();
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host("rabbitmq://localhost");
+                    cfg.ConfigureHost();
                     cfg.ReceiveEndpoint("web_order_placed", ep =>
                     {
                         ep.ConfigureConsumer<OrderPlacedConsumer>(context);

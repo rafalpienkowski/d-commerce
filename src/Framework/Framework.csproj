@@ -1,12 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <Company>dCommerce</Company>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="MassTransit" Version="6.3.2" />
+      <PackageReference Include="MassTransit.RabbitMQ" Version="6.3.2" />
+      <PackageReference Include="Jaeger" Version="0.3.7" />
+      <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.6.2" />
+      <PackageReference Include="MassTransit.OpenTracing" Version="0.0.3" />
     </ItemGroup>
 
 </Project>

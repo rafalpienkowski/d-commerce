@@ -1,6 +1,7 @@
 using Billing.Messages.Commands;
 using Billing.Payments;
 using Framework;
+using Framework.Extensions;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace Billing
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTracing();
             services.AddDbContext<PaymentDetailsContext>();
             services.AddScoped<PaymentDetailsContext>();
 
@@ -37,7 +39,7 @@ namespace Billing
                 x.AddConsumer<ChargePaymentConsumer>();
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.Host("rabbitmq://localhost");
+                    cfg.ConfigureHost();
                     cfg.ReceiveEndpoint("billing_order_created", ep =>
                     {
                         ep.ConfigureConsumer<OrderCreatedConsumer>(context);
