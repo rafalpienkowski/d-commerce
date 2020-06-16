@@ -55,9 +55,11 @@ docker-compose up
 I prepated the dedicated tasks for VS Code and Rider's IDEs.
 
 VS Code
+
 ![VS Code](./docs/vs_code.png)
 
 Rider
+
 ![Rider](./docs/rider.png)
 
 Simply start selected project. If you're using Rider you could start all projects at once.
