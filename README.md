@@ -35,6 +35,33 @@ For a better understanding of what happens when a customer place an order, below
 
 To speed up the development process, the MassTransit framework is used. The transport layer is covered by the RabbitMQ message broker. For monitoring purposes, I get the advantage of Jaeger.
 
+## Running the project
+
+### Requirements
+- [.Net Core SDK 3.1](https://dotnet.microsoft.com/download)
+- [docker](https://www.docker.com/get-started)
+- [docker-compose](https://docs.docker.com/compose/install/)
+
+### Running the infrastructure
+
+To run the project's infrastructure type in your command line
+
+```
+docker-compose up
+```
+
+### Running projects
+
+I prepated the dedicated tasks for VS Code and Rider's IDEs.
+
+VS Code
+![VS Code](./docs/vs_code.png)
+
+Rider
+![Rider](./docs/rider.png)
+
+Simply start selected project. If you're using Rider you could start all projects at once.
+
 ## Patterns used in project
 
 - Events
