@@ -52,7 +52,7 @@ docker-compose up
 
 ### Running projects
 
-I prepated the dedicated tasks for VS Code and Rider's IDEs.
+I prepared the dedicated tasks for VS Code and Rider's IDEs.
 
 VS Code
 
@@ -62,7 +62,8 @@ Rider
 
 ![Rider](./docs/rider.png)
 
-Simply start selected project. If you're using Rider you could start all projects at once.
+Start the selected project. If you're using Rider, you could lunch all projects at once.
+
 
 ## Patterns used in project
 
