@@ -22,9 +22,18 @@ This statement has a reflection in the development teams structure which present
 
 Each department has it's own development team which builds part of the system. To ensure the non-functional requirements like scalability, reliability and last but not least, parallel development, the solution architect decided to design `a distributed system`.
 
+This repository contains code which covers order placing feature. A user can track the status of his/her order. Going through the process order meets statuses:
+- Placed
+- Created
+- Payment accepted
+- Payment rejected (as a rainy day scenario not covered yet.)
+- Shipping arranged
+
 For a better understanding of what happens when a customer place an order, below is the flow chart with communication between context details.
 
 ![Order flow](./docs/order_flow.png)
+
+To speed up the development process, the MassTransit framework is used. The transport layer is covered by the RabbitMQ message broker. For monitoring purposes, I get the advantage of Jaeger.
 
 ## Patterns used in project
 
@@ -42,4 +51,5 @@ This project uses technologies and frameworks:
 - [MassTransit](https://masstransit-project.com/)
 - [docker](https://www.docker.com/)
 - [PostgreSQL](https://www.postgresql.org/)
+- [Jaeger](https://www.jaegertracing.io/)
 - [RabbitMQ](https://www.rabbitmq.com/)
