@@ -55,3 +55,10 @@ CREATE TABLE IF NOT EXISTS shipping."PersistedEvents" (
 	"Processed" bool NOT NULL DEFAULT false,
 	CONSTRAINT persisted_events_pkey PRIMARY KEY ("Id")
 );
+
+CREATE TABLE IF NOT EXISTS shipping."EventContexts" (
+	"EventId" uuid NOT NULL,
+	"TraceId" varchar(40) NOT NULL,
+	"SpanId" varchar(40) NOT NULL,
+	CONSTRAINT event_contexts_pkey PRIMARY KEY ("EventId")
+);

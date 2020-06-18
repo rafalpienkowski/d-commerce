@@ -9,6 +9,7 @@ namespace Shipping.BusinessCustomers
 
         public DbSet<ShippingOrder> ShippingOrders { get; set; }
         public DbSet<PersistedEvent> PersistedEvents { get; set; }
+        public DbSet<EventContext> EventContexts { get; set; } 
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseNpgsql("Host=localhost;Database=dcommerce;Username=dcommerce;Password=password");

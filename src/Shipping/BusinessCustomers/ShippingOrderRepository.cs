@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using OpenTracing.Util;
 using Shipping.Framework;
 
 namespace Shipping.BusinessCustomers
@@ -42,6 +43,14 @@ namespace Shipping.BusinessCustomers
                     TimeStamp = @event.TimeStamp,
                     Type = @event.GetType().ToString(),
                     Body = body
+                });
+                
+                var context = GlobalTracer.Instance.ActiveSpan.Context;
+                await _dbContext.EventContexts.AddAsync(new EventContext
+                {
+                    EventId = @event.Id,
+                    TraceId = context.TraceId,
+                    SpanId = context.SpanId
                 });
             }
 

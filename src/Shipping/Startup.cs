@@ -42,8 +42,7 @@ namespace Shipping
                 x.AddConsumer<PaymentAcceptedConsumer>();
                 x.AddBus(context => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    // cfg.ConfigureHost();
-                    cfg.Host("rabbitmq://localhost");
+                    cfg.ConfigureHost();
                     cfg.ReceiveEndpoint(typeof(CreateShipping).GetQueueName(), ep =>
                     {
                         ep.ConfigureConsumer<CreateShippingConsumer>(context);

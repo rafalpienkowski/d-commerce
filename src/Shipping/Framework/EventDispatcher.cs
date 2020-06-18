@@ -4,6 +4,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Coravel.Invocable;
 using Framework;
+using Jaeger;
+using OpenTracing.Util;
 using Shipping.BusinessCustomers;
 
 namespace Shipping.Framework
@@ -24,13 +26,24 @@ namespace Shipping.Framework
             if (_dbContext.PersistedEvents.Any(pe => !pe.Processed))
             {
 
-                foreach (var persistedEvent in _dbContext.PersistedEvents.Where(pe => !pe.Processed))
+                foreach (var persistedEvent in _dbContext.PersistedEvents.Where(pe => !pe.Processed).ToList())
                 {
                     Console.WriteLine($"Sending event: {JsonSerializer.Serialize(persistedEvent)}");
                     var eventType = GetEventType(persistedEvent.Type);
                     var @event = JsonSerializer.Deserialize(persistedEvent.Body, eventType);
+                    var persistedEventContext = _dbContext.EventContexts.Single(ec => ec.EventId == persistedEvent.Id);
+                    var operationName = $"Publishing Message: {eventType}";
 
-                    await _eventBus.Publish(@event);
+                    var spanBuilder = GlobalTracer.Instance.BuildSpan(operationName);
+                    var spanContext = new SpanContext(TraceId.FromString(persistedEventContext.TraceId),
+                        SpanId.NewUniqueId(), SpanId.FromString(persistedEventContext.SpanId),
+                        SpanContextFlags.Sampled);
+                    
+                    using (var scope = spanBuilder.AsChildOf(spanContext).StartActive())
+                    {
+                        await _eventBus.Publish(@event);
+                    }
+                    
                     persistedEvent.Processed = true;
                 }
                 await _dbContext.SaveChangesAsync();
